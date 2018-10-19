@@ -32,6 +32,12 @@ class Nav extends Component {
                     </li>
                     <li style={liStyle}>
                         <Link target="_self"
+                              to='/custompopover'>
+                            <span>CustomPopover</span>
+                        </Link>
+                    </li>
+                    <li style={liStyle}>
+                        <Link target="_self"
                               to='/readonly'>
                             <span>Read only</span>
                         </Link>
