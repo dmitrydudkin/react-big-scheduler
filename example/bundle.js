@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {Router, Route, hashHistory} from 'react-router'
 import Basic from './Basic'
+import CustomPopover from './CustomPopover'
 import Readonly from './Readonly'
 import Locale from './Locale'
 import Views from './Views'
@@ -25,6 +26,7 @@ import ComingSoon from './ComingSoon'
 render((
     <Router history={hashHistory}>
         <Route path="/" component={Basic}/>
+        <Route path="/custompopover" component={CustomPopover}/>
         <Route path="/readonly" component={Readonly}/>
         <Route path="/locale" component={Locale}/>
         <Route path="/views" component={Views}/>

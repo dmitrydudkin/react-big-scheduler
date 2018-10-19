@@ -43,6 +43,7 @@ class EventItem extends Component {
         viewEvent2Text: PropTypes.string,
         conflictOccurred: PropTypes.func,
         eventItemTemplateResolver: PropTypes.func,
+        eventItemPopoverTemplateResolver: PropTypes.func,
     }
 
     componentWillReceiveProps(np) {
@@ -318,7 +319,19 @@ class EventItem extends Component {
     }
 
     render() {
-        const {eventItem, isStart, isEnd, isInPopover, eventItemClick, schedulerData, isDragging, connectDragSource, connectDragPreview, eventItemTemplateResolver} = this.props;
+        const {
+            eventItem,
+            isStart,
+            isEnd,
+            isInPopover,
+            eventItemClick,
+            schedulerData,
+            isDragging,
+            connectDragSource,
+            connectDragPreview,
+            eventItemTemplateResolver,
+            eventItemPopoverTemplateResolver,
+        } = this.props;
         const {config, localeMoment} = schedulerData;
         const {left, width, top} = this.state;
         let roundCls = isStart ? (isEnd ? 'round-all' : 'round-head') : (isEnd ? 'round-tail' : 'round-none');
@@ -327,6 +340,7 @@ class EventItem extends Component {
             bgColor = eventItem.bgColor;
 
         let titleText = schedulerData.behaviors.getEventTextFunc(schedulerData, eventItem);
+
         let content = (
             <EventItemPopover
                 {...this.props}
@@ -336,6 +350,9 @@ class EventItem extends Component {
                 endTime={eventItem.end}
                 statusColor={bgColor}/>
         );
+
+        if (eventItemPopoverTemplateResolver)
+            content = eventItemPopoverTemplateResolver(schedulerData, eventItem, bgColor, isStart, isEnd, 'event-item', config.eventItemHeight, undefined);
 
         let start = localeMoment(eventItem.start);
         let eventTitle = isInPopover ? `${start.format('HH:mm')} ${titleText}` : titleText;
