@@ -1,5 +1,5 @@
 {
-  "name": "@vint/react-big-scheduler",
+  "name": "erm-react-big-scheduler",
   "version": "0.3.1",
   "description": "A scheduler and resource planning component built for React and made for modern browsers (IE10+)",
   "keywords": [
